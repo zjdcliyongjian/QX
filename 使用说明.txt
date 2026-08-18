@@ -1,0 +1,42 @@
+《七夕浪漫3D爱心粒子》全平台使用说明
+
+一、Windows 版本
+1. 双击“七夕浪漫3D爱心粒子.exe”，程序会自动全屏播放。
+2. 完整动画时长为 10 秒，播放结束后自动循环。
+3. 点击右上角“×”或按键盘 Esc 键即可关闭。
+4. 窗口预览模式：七夕浪漫3D爱心粒子.exe --preview
+
+二、macOS 版本
+1. 双击“七夕浪漫3D爱心粒子.app”即可打开并全屏播放。
+2. 点击右上角“×”或按 Esc 键即可关闭。
+3. GitHub 自动构建会同时生成 DMG 和 ZIP；可从 Actions 的 qixi-heart-macos 构建产物中下载。
+4. 第一次打开未签名版本时，如果系统提示无法验证开发者，可在 Finder 中右键应用，选择“打开”，再确认一次。
+
+三、可选背景音乐
+1. 准备有合法使用权限的 MP3 音乐文件。
+2. 将文件名改成：传奇.mp3
+3. Windows：放在“七夕浪漫3D爱心粒子.exe”同目录。
+4. macOS：放在“七夕浪漫3D爱心粒子.app”同目录。
+5. 没有音乐文件时，动画仍可正常播放。
+
+四、源码与二创
+1. Windows 完整源码：QixiRomanticHeartParticles.cs
+2. macOS 动画源码：macos/index.html
+3. macOS 桌面外壳源码：macos/main.swift
+4. Windows 构建脚本：build.ps1
+5. macOS 构建脚本：macos/build-macos.sh
+6. GitHub 自动构建：.github/workflows/build-desktop.yml
+7. 生成类似效果的完整提示词：创作提示词.md
+8. 源码使用 MIT License，可学习、修改和二次创作；第三方音乐和素材不包含在许可范围内。
+
+五、GitHub 自动生成 Windows 和 macOS 成品
+1. 将整个项目上传到 GitHub。
+2. 打开仓库的 Actions 页面。
+3. 选择“Build desktop apps”。
+4. 点击“Run workflow”。
+5. 构建完成后下载 qixi-heart-windows 和 qixi-heart-macos。
+
+注意：
+- 请勿把“传奇.mp3”、参考视频、制作过程截图和 dist 编译目录提交到 GitHub；项目中的 .gitignore 已自动排除这些内容。
+- Windows 版已在 Windows 本机完成编译检查。
+- macOS 的 .app、DMG 和 ZIP 必须在 macOS 上构建；GitHub Actions 会自动使用 macOS 官方运行器完成。

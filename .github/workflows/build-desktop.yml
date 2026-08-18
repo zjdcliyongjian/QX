@@ -1,0 +1,53 @@
+name: Build desktop apps
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  windows:
+    name: Windows EXE
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build Windows app
+        shell: powershell
+        run: powershell -NoProfile -ExecutionPolicy Bypass -File .\build.ps1
+
+      - name: Create Windows package
+        shell: powershell
+        run: |
+          New-Item -ItemType Directory -Path release-windows -Force | Out-Null
+          Copy-Item -LiteralPath '.\dist\七夕浪漫3D爱心粒子.exe' -Destination '.\release-windows\七夕浪漫3D爱心粒子.exe'
+          Copy-Item -LiteralPath '.\使用说明.txt' -Destination '.\release-windows\使用说明.txt'
+          Compress-Archive -LiteralPath '.\release-windows\七夕浪漫3D爱心粒子.exe','.\release-windows\使用说明.txt' -DestinationPath '.\七夕浪漫3D爱心粒子-Windows.zip' -Force
+
+      - name: Upload Windows package
+        uses: actions/upload-artifact@v4
+        with:
+          name: qixi-heart-windows
+          path: 七夕浪漫3D爱心粒子-Windows.zip
+
+  macos:
+    name: macOS app
+    runs-on: macos-14
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build macOS app
+        run: |
+          chmod +x macos/build-macos.sh
+          ./macos/build-macos.sh
+
+      - name: Upload macOS packages
+        uses: actions/upload-artifact@v4
+        with:
+          name: qixi-heart-macos
+          path: |
+            macos/dist-macos/七夕浪漫3D爱心粒子-macOS.zip
+            macos/dist-macos/七夕浪漫3D爱心粒子-macOS.dmg

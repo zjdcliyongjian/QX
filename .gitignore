@@ -1,0 +1,25 @@
+# 编译输出
+dist/
+macos/dist-macos/
+*.exe
+*.pdb
+
+# 本地音乐和参考视频
+*.mp3
+*.wav
+*.mp4
+reference/
+
+# 制作过程文件
+重制关键帧/
+*.png
+!紫蓝星空最终预览.png
+!macos/preview.png
+
+# 编辑器和系统文件
+.vs/
+.idea/
+*.user
+Thumbs.db
+.DS_Store
+.preview-chrome*/
