@@ -15,11 +15,11 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Build Windows app
-        shell: powershell
-        run: powershell -NoProfile -ExecutionPolicy Bypass -File .\build.ps1
+        shell: pwsh
+        run: .\build.ps1
 
       - name: Create Windows package
-        shell: powershell
+        shell: pwsh
         run: |
           New-Item -ItemType Directory -Path release-windows -Force | Out-Null
           Copy-Item -LiteralPath '.\dist\七夕浪漫3D爱心粒子.exe' -Destination '.\release-windows\七夕浪漫3D爱心粒子.exe'
